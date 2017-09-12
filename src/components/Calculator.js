@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import * as ActionTypes from '../constants/actionTypes.js'
 import {GETRESULT} from "../constants/actionTypes";
 
+// TODO: Divide the Calculator component into Display and Buttons components
+// import { connect } from 'react-redux';
+// mapStateToProps(state): stateProps
+// mapDispatchToProps(dispatch): dispatchProps
+
 const Calculator = ({display, dispatch}) => {
     return (
         <div>
