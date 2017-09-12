@@ -3,30 +3,21 @@ import PropTypes from 'prop-types';
 
 import Calculator from './Calculator';
 
-class App extends Component {
-    render() {
-        return (
-            <div>
-                <Calculator
-                    display={this.props.display}
-                    appendToDisplay={this.props.appendToDisplay}
-                    performOperation={this.props.performOperation}
-                    getResult={this.props.getResult}
-                />
-            </div>
-        );
-    }
-}
-
-App.propTypes = {
-    display: PropTypes.number,
-    appendToDisplay: PropTypes.func.isRequired,
-    performOperation: PropTypes.func.isRequired,
-    getResult: PropTypes.func.isRequired
+const App = ({display, dispatch}) => {
+    return (
+        <div>
+            <Calculator
+                display={display}
+                dispatch={dispatch}
+            />
+        </div>
+    );
 };
 
-App.defaultProps = {
-    display: 0
+
+App.propTypes = {
+    display: PropTypes.number.isRequired,
+    dispatch: PropTypes.func.isRequired,
 };
 
 export default App;
