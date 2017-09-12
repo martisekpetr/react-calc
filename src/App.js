@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import logo from './logo.svg';
 import './App.css';
 
@@ -29,5 +30,17 @@ class App extends Component {
         );
     }
 }
+
+App.propTypes = {
+    display : PropTypes.number,
+    appendToDisplay : PropTypes.func.isRequired,
+    performOperation : PropTypes.func.isRequired,
+    getResult : PropTypes.func.isRequired,
+};
+
+App.defaultProps = {
+    display : 0,
+};
+
 
 export default App;

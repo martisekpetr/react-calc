@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 
 const Calculator = ({display, appendToDisplay, performOperation, getResult}) => {
@@ -24,8 +24,18 @@ const Calculator = ({display, appendToDisplay, performOperation, getResult}) => 
             <button onClick={() => performOperation('divide')}>/</button>
             <button onClick={getResult}>=</button>
         </div>
-);
+        );
 };
 
+Calculator.propTypes = {
+    display : PropTypes.number,
+    appendToDisplay : PropTypes.func.isRequired,
+    performOperation : PropTypes.func.isRequired,
+    getResult : PropTypes.func.isRequired,
+};
+
+Calculator.defaultProps = {
+    display : 0,
+};
 
 export default Calculator
