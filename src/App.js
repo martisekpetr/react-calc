@@ -1,21 +1,46 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import logo from './logo.svg';
 import './App.css';
 
+import Calculator from './Calculator'
+
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+
+    render() {
+        return (
+            <div className="App">
+                <div className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <h2>Welcome to React</h2>
+                </div>
+                <p className="App-intro">
+                    To get started, edit <code>src/App.js</code> and save to reload.
+                </p>
+
+                <Calculator
+                    display={this.props.display}
+                    appendToDisplay={this.props.appendToDisplay}
+                    performOperation={this.props.performOperation}
+                    getResult={this.props.getResult}
+                />
+
+            </div>
+
+        );
+    }
 }
+
+App.propTypes = {
+    display : PropTypes.number,
+    appendToDisplay : PropTypes.func.isRequired,
+    performOperation : PropTypes.func.isRequired,
+    getResult : PropTypes.func.isRequired,
+};
+
+App.defaultProps = {
+    display : 0,
+};
+
 
 export default App;
