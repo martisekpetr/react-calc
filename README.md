@@ -120,6 +120,8 @@ We are always open to [your feedback](https://github.com/facebookincubator/creat
 
 After creation, your project should look like this:
 
+a
+
 ```
 my-app/
   README.md
