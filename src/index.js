@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
+// import { Provider } from 'react-redux';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -12,10 +13,7 @@ import rootReducer from './reducers/rootReducer';
   window.devToolsExtension ? window.devToolsExtension() : v => v
 );
 
-// Use:
-// store.getState() to get the state
-// store.dispatch to dispatch an action
-
+// TODO: Use Provider component (it has "store" prop)
 
 const render = () =>{
     ReactDOM.render(
