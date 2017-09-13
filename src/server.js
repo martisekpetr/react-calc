@@ -5,33 +5,27 @@ const PORT = 3002;
 
 
 const performOperation = (op, operand1, operand2) => {
-  let result;
   switch (op) {
     case 'ADD':
-      result = +operand1 + +operand2;
-      break;
+      return operand1 + operand2;
     case 'SUBTRACT':
-      result = operand1 - operand2;
-      break;
+      return operand1 - operand2;
     case 'MULTIPLY':
-      result = operand1 * operand2;
-      break;
+      return operand1 * operand2;
     case 'DIVIDE':
-      result = operand1 / operand2;
-      break;
+      return operand1 / operand2;
     default:
-      result = NaN;
+      return NaN;
   }
-  return result;
 };
 
 const server = express();
 server.use(cors());
 
 server.get('/:op/:operand1/:operand2/', (req, res) => {
-  let op = req.params.op;
-  let operand1 = req.params.operand1;
-  let operand2 = req.params.operand2;
+  const op = req.params.op;
+  const operand1 = Number(req.params.operand1);
+  const operand2 = Number(req.params.operand2);
   console.log(`Received message: ${op}, ${operand1}, ${operand2}`);
   res.status(200).json({ result: performOperation(op,operand1,operand2) })
 });

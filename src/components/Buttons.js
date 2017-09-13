@@ -4,7 +4,7 @@ import * as ActionTypes from '../constants/actionTypes.js';
 
 import { connect } from 'react-redux';
 
-const Buttons = ({ memory, display, operation, append, add, subtract, multiply, divide, getResult }) => {
+const Buttons = ({ append, add, subtract, multiply, divide, getResult }) => {
   return (
     <div>
       <button onClick={() => append(1)}>1</button>
@@ -23,7 +23,7 @@ const Buttons = ({ memory, display, operation, append, add, subtract, multiply, 
       <button onClick={subtract}>-</button>
       <button onClick={multiply}>*</button>
       <button onClick={divide}>/</button>
-      <button onClick={() => getResult(memory, display, operation)}>=</button>
+      <button onClick={getResult}>=</button>
     </div>
   );
 };
@@ -37,11 +37,6 @@ Buttons.propTypes = {
   getResult: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  display: state.display,
-  memory: state.memory,
-  operation: state.operation,
-});
 
 const mapDispatchToProps = dispatch => ({
   append: num => dispatch({ type: ActionTypes.APPEND, payload: num }),
@@ -49,7 +44,7 @@ const mapDispatchToProps = dispatch => ({
   subtract: () => dispatch({ type: ActionTypes.SUBTRACT }),
   multiply: () => dispatch({ type: ActionTypes.MULTIPLY }),
   divide: () => dispatch({ type: ActionTypes.DIVIDE }),
-  getResult: (memory, display, operation) => dispatch({ type: ActionTypes.GET_RESULT, payload: { memory, display, operation }}),
+  getResult: () => dispatch({ type: ActionTypes.GET_RESULT}),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Buttons);
+export default connect(undefined, mapDispatchToProps)(Buttons);

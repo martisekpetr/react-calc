@@ -32,7 +32,7 @@ const rootReducer = (state=initialState, action) => {
     case ActionTypes.RESULT_RECEIVED:
       return{
         ...state,
-        display: +action.payload,
+        display: action.payload,
         isEditingDisplay: false,
       };
 

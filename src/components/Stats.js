@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { createSelector } from 'reselect'
-
+import * as CalcSelectors from '../selectors/calcSelectors'
 const Stats = ({ average, sum }) => {
   return (
     <div>
@@ -18,30 +17,14 @@ const Stats = ({ average, sum }) => {
 };
 
 Stats.propTypes = {
-  display: PropTypes.number.isRequired
-
+  average: PropTypes.number.isRequired,
+  sum: PropTypes.number.isRequired,
 };
 
 
-
-const memorySelector = state => state.memory;
-const displaySelector = state => state.display;
-
-const averageSelector = createSelector(
-  memorySelector,
-  displaySelector,
-  (memory, display) => (memory + display)/2,
-);
-
-const sumSelector = createSelector(
-  memorySelector,
-  displaySelector,
-  (memory, display) => (memory + display),
-);
-
 const mapStateToProps = state => ({
-  average: averageSelector(state),
-  sum: sumSelector(state),
+  average: CalcSelectors.averageSelector(state),
+  sum: CalcSelectors.sumSelector(state),
 });
 
 export default connect(mapStateToProps, undefined)(Stats);
