@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
-import Calculator from './Calculator';
+import Display from './Display'
+import Buttons from './Buttons';
 
-const App = ({display, dispatch}) => {
+const App = () => {
     return (
         <div>
-            <Calculator
-                display={display}
-                dispatch={dispatch}
-            />
+            <Display/>
+            <Buttons/>
         </div>
     );
-};
-
-
-App.propTypes = {
-    display: PropTypes.number.isRequired,
-    dispatch: PropTypes.func.isRequired,
 };
 
 export default App;

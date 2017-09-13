@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -15,18 +15,13 @@ import rootReducer from './reducers/rootReducer';
 
 // TODO: Use Provider component (it has "store" prop)
 
-const render = () =>{
-    ReactDOM.render(
-        <App
-            display  = {store.getState().display}
-            dispatch = {store.dispatch}
-        />,
-        document.getElementById('root'));
-};
 
-store.subscribe(render);
-
-render();
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+);
 
 
 registerServiceWorker();
