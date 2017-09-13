@@ -7,12 +7,13 @@ const initialState = {
   isEditingDisplay: true
 };
 
-const rootReducer = (state, action) => {
+const rootReducer = (state=initialState, action) => {
   switch (action.type) {
     case ActionTypes.APPEND:
       return {
         ...state,
         display: state.isEditingDisplay ? state.display * 10 + action.payload : action.payload,
+        memory: state.isEditingDisplay ? state.memory : state.display,
         isEditingDisplay: true
       };
 
@@ -22,39 +23,21 @@ const rootReducer = (state, action) => {
     case ActionTypes.DIVIDE:
       return {
         ...state,
-        memory: state.display,
+        // memory: state.display,
         operation: action.type,
 
         isEditingDisplay: false
       };
-    case ActionTypes.GETRESULT:
-      let operand1 = state.memory;
-      let operand2 = state.display;
-      let result;
-      switch (state.operation) {
-        case ActionTypes.ADD:
-          result = operand1 + operand2;
-          break;
-        case ActionTypes.SUBTRACT:
-          result = operand1 - operand2;
-          break;
-        case ActionTypes.MULTIPLY:
-          result = operand1 * operand2;
-          break;
-        case ActionTypes.DIVIDE:
-          result = operand1 / operand2;
-          break;
-        default:
-          result = NaN;
-      }
 
-      return {
+    case ActionTypes.RESULT_RECEIVED:
+      return{
         ...state,
-        display: result,
-        isEditingDisplay: false
+        display: +action.payload,
+        isEditingDisplay: false,
       };
+
     default:
-      return initialState;
+      return state;
   }
 };
 
